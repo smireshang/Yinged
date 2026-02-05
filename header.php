@@ -25,7 +25,7 @@
             <img src="<?php $this->options->logoUrl(); ?>" width="80" height="80" alt="<?php $this->options->title(); ?>"/>
             <div class="site-info">
                 <h1><?php $this->options->title(); ?></h1>
-                <p class="site-description"><?php $this->options->description(); ?></p>
+                <p class="site-description"><?php $this->options->yiyan(); ?></p>
             </div>
         </header>
         <nav class="nav header-nav">
