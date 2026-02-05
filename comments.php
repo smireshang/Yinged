@@ -19,27 +19,31 @@
     </ol>
     <?php endif; ?>
 
-    <?php $this->respond(); ?>
-    <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" class="comment-form" role="form">
-        <div class="comment-form-top">
-            <div class="comment-field">
-                <label for="author"><?php _e('昵称'); ?><span class="required">*</span></label>
-                <input type="text" id="author" name="author" required value="<?php $this->remember('author'); ?>" placeholder="<?php _e('请输入昵称'); ?>">
+    <div id="respond" class="comment-respond">
+        <form method="post" action="<?php $this->commentUrl(); ?>" id="comment-form" class="comment-form" role="form">
+            <?php $this->security->index($this->request->getRequestUrl()); ?>
+            <input type="hidden" name="parent" id="comment-parent" value="0">
+
+            <div class="comment-form-top">
+                <div class="comment-field">
+                    <label for="author"><?php _e('昵称'); ?><span class="required">*</span></label>
+                    <input type="text" id="author" name="author" required value="<?php $this->remember('author'); ?>" placeholder="<?php _e('请输入昵称'); ?>">
+                </div>
+                <div class="comment-field">
+                    <label for="mail"><?php _e('邮箱'); ?><span class="required">*</span></label>
+                    <input type="email" id="mail" name="mail" required value="<?php $this->remember('mail'); ?>" placeholder="<?php _e('请输入邮箱'); ?>">
+                </div>
+                <div class="comment-field">
+                    <label for="url"><?php _e('地址'); ?></label>
+                    <input type="url" id="url" name="url" value="<?php $this->remember('url'); ?>" placeholder="<?php _e('请输入地址'); ?>">
+                </div>
             </div>
-            <div class="comment-field">
-                <label for="mail"><?php _e('邮箱'); ?><span class="required">*</span></label>
-                <input type="email" id="mail" name="mail" required value="<?php $this->remember('mail'); ?>" placeholder="<?php _e('请输入邮箱'); ?>">
+            <div class="comment-form-bottom comment-field">
+                <label for="textarea"><?php _e('评论内容'); ?></label>
+                <textarea id="textarea" name="text" rows="6" required placeholder="<?php _e('请输入评论内容'); ?>"><?php $this->remember('text'); ?></textarea>
             </div>
-            <div class="comment-field">
-                <label for="url"><?php _e('地址'); ?></label>
-                <input type="url" id="url" name="url" value="<?php $this->remember('url'); ?>" placeholder="<?php _e('请输入地址'); ?>">
-            </div>
-        </div>
-        <div class="comment-form-bottom comment-field">
-            <label for="textarea"><?php _e('评论内容'); ?></label>
-            <textarea id="textarea" name="text" rows="6" required placeholder="<?php _e('请输入评论内容'); ?>"></textarea>
-        </div>
-        <button type="submit" class="comment-submit"><?php _e('提交评论'); ?></button>
-    </form>
+            <button type="submit" class="comment-submit"><?php _e('提交评论'); ?></button>
+        </form>
+    </div>
 </section>
 <?php endif; ?>
