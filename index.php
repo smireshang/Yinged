@@ -12,13 +12,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('header.php');
 ?>
 
-<nav class="nav">
-<ul class="flat">
-<li class="active"><a href="<?php $this->options->siteUrl(); ?>">首页</a></li>
-    <?php $this->widget('Widget_Contents_Page_List')
-               ->parse('<li class="active"><a href="{permalink}">{title}</a></li> '); ?></ul>
-                </nav>
-            </div>
             <article>              
             <div class="recent-posts section">
   <h2 class="section-header">随笔<i class="ri-quill-pen-line"></i></h2>
