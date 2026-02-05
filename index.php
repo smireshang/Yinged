@@ -2,10 +2,10 @@
 /**
  * 简约而不简单
  * 
- * @package Ying
- * @author 颖宝
+ * @package Yinged
+ * @author biilii, 颖宝
  * @version 1.1
- * @link https://github.com/Siooooooooo/Ying/
+ * @link https://github.com/smireshang/Yinged/
  */
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
