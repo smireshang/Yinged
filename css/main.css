@@ -160,81 +160,82 @@ ul {
     border-radius: 8px;
 }
 
+body.page-ready .main {
+    animation: pageFadeIn .28s ease;
+}
+
+body.page-leaving .main {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .22s ease, transform .22s ease;
+}
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .header {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
 }
 
-.header h1,
-.header h2 {
+.header .site-info h1 {
     margin: 0;
-    padding: 0;
     font-size: 1.6rem;
-    margin-bottom: 10px;
+    font-weight: 600;
 }
 
-.header h2 {
+.header .site-info .site-description {
+    margin: 8px 0 0;
     font-size: .9rem;
-    line-height: 2rem;
+    color: #586069;
 }
 
-.header nav {
-    border-top: 1px solid #f4f4f4;
+.header-nav {
+    border-bottom: 1px solid #f4f4f4;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
 }
 
-.header nav ul,
-.header nav li {
+.header-nav ul,
+.header-nav li {
     margin: 0;
 }
 
-.header nav ul.flat {
+.header-nav ul.flat {
     padding: 0;
 }
 
-.header nav ul.flat li {
+.header-nav ul.flat li {
     display: inline-block;
     list-style: none;
     margin-left: 0;
     margin-right: 10px;
-    margin-top: 20px;
     text-transform: capitalize;
 }
 
-.header nav ul.flat li.active a {
+.header-nav ul.flat li.active a {
     color: #24292e;
 }
 
-.header nav ul.flat li a {
+.header-nav ul.flat li a {
     color: #586069;
 }
 
-.header nav ul.flat li a:hover {
+.header-nav ul.flat li a:hover {
     color: #646464;
     text-decoration: none;
-}
-
-.header .site-description {
-    display: flex;
-    justify-content: space-between;
-}
-
-.header .site-description nav {
-    margin: 0;
-    padding: 0;
-    border: none;
-    min-width: 50px;
-    margin-bottom: 10px;
-}
-
-.header .site-description nav ul a {
-    display: inline-block;
-    margin-right: 5px;
-    text-decoration: none;
-}
-
-
-.header .site-description nav ul a:hover {
-    color: #586069;
 }
 
 .section .section-header {
@@ -248,6 +249,10 @@ ul {
 
 .recent-posts .posts .post {
     margin-bottom: 30px;
+}
+
+.recent-posts .posts .post > a {
+    font-weight: 700;
 }
 
 .recent-posts .posts .post .time,
@@ -369,9 +374,6 @@ ul {
         box-shadow: none;
     }
 
-    .header h2 {
-        display: none;
-    }
 
     .container {
         margin-top: 10px;

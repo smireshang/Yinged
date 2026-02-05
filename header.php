@@ -19,24 +19,18 @@
     <?php $this->header(); ?>
 </head>
 <body>
-<?php
-$socialGitlab = trim((string)$this->options->socialGitlab);
-$socialRss = trim((string)$this->options->socialRss);
-?>
 <div class="main">
     <div class="container">
-        <div class="header">
+        <header class="header">
             <img src="<?php $this->options->logoUrl(); ?>" width="80" height="80" alt="<?php $this->options->title(); ?>"/>
-            <div class="site-description">
-                <h2><span><?php $this->options->yiyan(); ?></span></h2>
-                <nav class="nav social">
-                    <ul class="flat">
-                        <?php if ($socialGitlab !== ''): ?>
-                        <li><a href="<?php echo htmlspecialchars($socialGitlab); ?>" title="GitLab" target="_blank" rel="noopener noreferrer"><i class="ri-gitlab-line"></i></a></li>
-                        <?php endif; ?>
-                        <?php if ($socialRss !== ''): ?>
-                        <li><a href="<?php echo htmlspecialchars($socialRss); ?>" title="RSS" target="_blank" rel="noopener noreferrer"><i class="ri-rss-line"></i></a></li>
-                        <?php endif; ?>
-                    </ul>
-                </nav>
+            <div class="site-info">
+                <h1><?php $this->options->title(); ?></h1>
+                <p class="site-description"><?php $this->options->yiyan(); ?></p>
             </div>
+        </header>
+        <nav class="nav header-nav">
+            <ul class="flat">
+                <li class="active"><a href="<?php $this->options->siteUrl(); ?>">首页</a></li>
+                <?php $this->widget('Widget_Contents_Page_List')->parse('<li class="active"><a href="{permalink}">{title}</a></li> '); ?>
+            </ul>
+        </nav>
