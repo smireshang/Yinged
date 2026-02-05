@@ -24,8 +24,8 @@ $this->need('header.php');
   <h2 class="section-header">随笔<i class="ri-quill-pen-line"></i></h2>
   <?php while ($this->next()): ?>
     <div class="posts"><div class="post">
-    <div class="time"><?php $this->date('F j, Y'); ?></div>
-    <a href="<?php $this->permalink() ?>"><?php $this->title() ?></a></div><div class="post">
+    <a href="<?php $this->permalink() ?>"><?php $this->title() ?></a>
+    <div class="time"><?php $this->date('F j, Y'); ?></div></div><div class="post">
     <?php endwhile; ?>
 </ul>
 </article>

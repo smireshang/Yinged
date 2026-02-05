@@ -12,25 +12,31 @@
             'author'   => _t('%s 发布的文章')
         ], '', ' - '); ?><?php $this->options->title(); ?></title>
 
-    <!-- 使用url函数转换相关路径 -->
     <link rel="stylesheet" href="<?php $this->options->themeUrl('/css/main.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('/css/normalize.css'); ?>">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="<?php $this->options->themeUrl('/js/jquery.min.js'); ?>"></script>
-    <!-- 通过自有函数输出HTML头部信息 -->
     <?php $this->header(); ?>
 </head>
 <body>
-    <div class="main">
-        <div class="container">
-            <div class="header">
-            <img src="<?php $this->options->logoUrl() ?>" width="80" height="80" alt="<?php $this->options->title() ?>"/>
-                <div class="site-description">
-                    <h2><span><?php $this->options->yiyan(); ?></span></h2>
-                    <nav class="nav social">
-                        <ul class="flat">
-                            <a href="https://qingshu.org" title="E-mail" target="_blank"><i class="ri-gitlab-line"></i></a>
-                            <a href="/feed" title="rss" target="_blank"><i class="ri-rss-line"></i></a>
-                        </ul>
-                    </nav>
-                </div>
+<?php
+$socialGitlab = trim((string)$this->options->socialGitlab);
+$socialRss = trim((string)$this->options->socialRss);
+?>
+<div class="main">
+    <div class="container">
+        <div class="header">
+            <img src="<?php $this->options->logoUrl(); ?>" width="80" height="80" alt="<?php $this->options->title(); ?>"/>
+            <div class="site-description">
+                <h2><span><?php $this->options->yiyan(); ?></span></h2>
+                <nav class="nav social">
+                    <ul class="flat">
+                        <?php if ($socialGitlab !== ''): ?>
+                        <li><a href="<?php echo htmlspecialchars($socialGitlab); ?>" title="GitLab" target="_blank" rel="noopener noreferrer"><i class="ri-gitlab-line"></i></a></li>
+                        <?php endif; ?>
+                        <?php if ($socialRss !== ''): ?>
+                        <li><a href="<?php echo htmlspecialchars($socialRss); ?>" title="RSS" target="_blank" rel="noopener noreferrer"><i class="ri-rss-line"></i></a></li>
+                        <?php endif; ?>
+                    </ul>
+                </nav>
+            </div>
