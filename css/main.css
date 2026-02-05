@@ -229,7 +229,6 @@ body.page-loading .page-progress span:nth-child(3) {
     70% { transform: scaleY(1.05); }
 }
 
-
 .header {
     display: flex;
     align-items: center;
