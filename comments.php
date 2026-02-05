@@ -19,9 +19,10 @@
     </ol>
     <?php endif; ?>
 
+    <?php $this->respond(); ?>
     <div id="respond" class="comment-respond">
         <form method="post" action="<?php $this->commentUrl(); ?>" id="comment-form" class="comment-form" role="form">
-            <?php $this->security->index($this->request->getRequestUrl()); ?>
+            <?php $this->security->index(); ?>
             <input type="hidden" name="parent" id="comment-parent" value="0">
 
             <div class="comment-form-top">
