@@ -1,20 +1,16 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 
-<a id="to_top" href="#" class="to_top"><i class="ri-arrow-up-line"></i></a>
-<div class="footer">
-    <nav class="nav">
-        © 2016 - <?php echo date('Y'); ?> Theme is <a href="https://github.com/Siooooooooo/Ying/" target="_blank" rel="noopener noreferrer">颖</a><br/>
-        <?php if (trim((string)$this->options->footerbeian) !== ''): ?>
-        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer"><span><?php $this->options->footerbeian(); ?></span></a><br/>
-        <?php endif; ?>
-        <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-cn"></use>
-        </svg>
-    </nav>
-</div>
-</div>
-</div>
-<script src="<?php $this->options->themeUrl('/js/iconfont.js'); ?>"></script>
-<script src="<?php $this->options->themeUrl('/js/app.js'); ?>"></script>
+<a id="to_top" href="#" class="to_top" style="display: block;"><i class="ri-arrow-up-line"></i></a> 
+            <div class="footer">
+                 <nav class="nav">
+                 © 2019 - <?php echo date('Y'); ?> <?php $this->options->title(); ?> <a href="https://github.com/osgz/Ying/" target="_blank" title="点击查看主题">Ying</a></br>
+                <a href="https://beian.miit.gov.cn/" target="_blank"><span><?php $this->options->footerbeian(); ?></span></a>
+<div style="margin:0 auto;"><a href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" style="display:inline-block;height:12px;line-height:12px;" target="_blank"><img src="https://pic.imgdb.cn/item/610f528b5132923bf8d27dfb.png" style="float:left;"/><p style="float:left;height:12px;line-height:12px;margin: 0px 0px 0px 3px;">云服务by又拍云</p></a></div>
+                 </nav>
+            </div>
+        </div>
+    </div>
+    <script src="<?php $this->options->themeUrl('/js/iconfont.js'); ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.1.8/lightgallery.umd.min.js"></script>
 </body>
 </html>
