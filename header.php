@@ -19,6 +19,7 @@
     <?php $this->header(); ?>
 </head>
 <body>
+<div class="page-progress" aria-hidden="true"><span></span></div>
 <div class="main">
     <div class="container">
         <header class="header">

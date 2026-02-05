@@ -1,15 +1,23 @@
 $(function () {
+    const body = $('body');
     const button = $('#to_top');
-
-    $('body').addClass('page-ready');
-
-    $('a[href]').on('click', function () {
+    $('a[href]').on('click', function (event) {
         const href = $(this).attr('href');
-        const isInternal = href && href.indexOf('#') !== 0 && href.indexOf('javascript:') !== 0 && !this.target && this.hostname === window.location.hostname;
+        const isHash = !href || href.indexOf('#') === 0;
+        const isJs = href && href.indexOf('javascript:') === 0;
+        const isDownload = $(this).attr('download') !== undefined;
+        const isModifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.which === 2;
+        const isExternal = this.hostname && this.hostname !== window.location.hostname;
 
-        if (isInternal) {
-            $('body').removeClass('page-ready').addClass('page-leaving');
+        if (isHash || isJs || isDownload || isModifiedClick || this.target || isExternal) {
+            return;
         }
+
+        event.preventDefault();
+        body.addClass('page-loading');
+        window.setTimeout(function () {
+            window.location.href = href;
+        }, 180);
     });
 
     if (!button.length) {
