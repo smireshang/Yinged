@@ -1,7 +1,6 @@
 $(function () {
     const body = $('body');
     const button = $('#to_top');
-
     $('a[href]').on('click', function (event) {
         const href = $(this).attr('href');
         const isHash = !href || href.indexOf('#') === 0;

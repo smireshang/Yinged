@@ -198,7 +198,6 @@ body.page-loading .page-progress span {
     100% { transform: scaleX(0.22); }
 }
 
-
 .header {
     display: flex;
     align-items: center;
