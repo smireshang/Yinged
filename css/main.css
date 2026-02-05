@@ -340,7 +340,7 @@ body.page-loading .page-progress span:nth-child(3) {
 }
 
 .footer {
-    text-align: right;
+    text-align: center;
     font-size: 0.75em;
     color: #999999;
     border-top: 1px solid #f4f4f4;
@@ -660,4 +660,47 @@ darkb-text:active {
     .comment-form-top {
         flex-direction: column;
     }
+}
+
+.footer .nav {
+    text-align: center;
+}
+
+.footer .upyun-link {
+    margin-top: 8px;
+}
+
+.footer .upyun-link a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.footer .upyun-link img {
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.comment-list {
+    margin: 0 0 16px;
+    padding: 0;
+}
+
+.comment-item {
+    list-style: none;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 10px 0;
+}
+
+.comment-meta {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 6px;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: #444;
+    margin-right: 10px;
 }

@@ -5,7 +5,7 @@
                  <nav class="nav">
                  © 2019 - <?php echo date('Y'); ?> <?php $this->options->title(); ?> <a href="https://github.com/osgz/Ying/" target="_blank" title="点击查看主题">Ying</a></br>
                 <a href="https://beian.miit.gov.cn/" target="_blank"><span><?php $this->options->footerbeian(); ?></span></a>
-<div style="margin:0 auto;"><a href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" style="display:inline-block;height:12px;line-height:12px;" target="_blank"><img src="https://pic.imgdb.cn/item/610f528b5132923bf8d27dfb.png" style="float:left;"/><p style="float:left;height:12px;line-height:12px;margin: 0px 0px 0px 3px;">云服务by又拍云</p></a></div>
+<div class="upyun-link"><a href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="_blank"><img src="https://pic.imgdb.cn/item/610f528b5132923bf8d27dfb.png" alt="又拍云"/><span>云服务by又拍云</span></a></div>
                  </nav>
             </div>
         </div>
