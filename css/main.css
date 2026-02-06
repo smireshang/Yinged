@@ -514,6 +514,20 @@ body.lightbox-open {
     margin-top: 40px;
 }
 
+.post-source-note {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 6px;
+    background: #f5f5f5;
+    color: #586069;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.post-source-note a {
+    color: #2f80ed;
+}
+
 .post-tags .tags a {
     display: inline-block;
     border-radius: 2px;

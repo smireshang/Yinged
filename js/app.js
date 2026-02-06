@@ -40,15 +40,18 @@ $(function () {
         }
 
         const navBottom = nav.position().top + nav.outerHeight(true);
+        const container = $('.container');
+        const extraHeight = 200;
         let maskHeight = 0;
 
         if (footer.length) {
             const footerTop = footer.position().top;
             maskHeight = Math.max(footerTop - navBottom + footer.outerHeight(true), 0);
-        } else {
-            const container = $('.container');
-            maskHeight = Math.max(container.innerHeight() - navBottom, 0);
+        } else if (container.length) {
+            maskHeight = Math.max(container.outerHeight(true) - navBottom, 0);
         }
+
+        maskHeight += extraHeight;
 
         loadingMask.css({
             top: navBottom + 'px',

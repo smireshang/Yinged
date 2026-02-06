@@ -22,6 +22,31 @@ function themeConfig($form)
     $form->addInput($topCids);
 }
 
+
+function themeFields($layout)
+{
+    $sourceType = new Typecho_Widget_Helper_Form_Element_Radio(
+        'sourceType',
+        array(
+            'original' => _t('原创'),
+            'reprint' => _t('转载')
+        ),
+        'original',
+        _t('文章来源类型'),
+        _t('设置文章来源类型，前端将显示对应提示')
+    );
+    $layout->addItem($sourceType);
+
+    $sourceUrl = new Typecho_Widget_Helper_Form_Element_Text(
+        'sourceUrl',
+        NULL,
+        '',
+        _t('转载原文地址'),
+        _t('当文章来源为转载时填写原文链接')
+    );
+    $layout->addItem($sourceUrl);
+}
+
 function yingedGetTopCids($value)
 {
     if (empty($value)) {
