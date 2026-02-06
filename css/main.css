@@ -172,8 +172,9 @@ ul {
 }
 
 .page-progress img {
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
+    max-width: 60px;
     display: block;
 }
 
@@ -689,4 +690,3 @@ darkb-text:active {
     box-shadow: none;
     border-radius: 0;
 }
-
