@@ -32,7 +32,8 @@ $this->need('header.php'); ?>
                             foreach ($contents as $content) {
                                 $this->widget('Widget_Archive@post-' . $content['cid'], 'pageSize=1&type=post', 'cid=' . $content['cid'])->to($postItem);
                                 $title = htmlspecialchars($postItem->title, ENT_QUOTES, 'UTF-8');
-                                echo "<p><span class='archives-time'>{$content['month']}-{$content['day']}</span> <a href='{$postItem->permalink}' title='{$title}'>{$title}</a></p>";
+                                $archiveDate = date('m/d', $content['created']);
+                                echo "<p><span class='archives-time'>{$archiveDate}</span> <a href='{$postItem->permalink}' title='{$title}'>{$title}</a></p>";
                             }
                             ?>
     

@@ -47,4 +47,5 @@
         </nav>
         <div class="content-loading-mask" aria-hidden="true">
             <img src="https://blog.misstwo.top/loading.gif" alt="">
+            <div class="loading-text">努力加载中…</div>
         </div>
