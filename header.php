@@ -51,6 +51,7 @@
                             ?>
                             <li class="active"><a href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a></li>
                         <?php endforeach; ?>
+
                     <?php endif; ?>
                     <?php $this->widget('Widget_Contents_Page_List')->parse('<li class="active"><a href="{permalink}">{title}</a></li> '); ?>
                 </ul>
