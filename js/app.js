@@ -7,25 +7,6 @@ $(function () {
     const lazyPlaceholder = 'https://blog.misstwo.top/lazyload.gif';
     const loadingMask = $('.content-loading-mask');
 
-    $('a[href]').on('click', function (event) {
-        const href = $(this).attr('href');
-        const isHash = !href || href.indexOf('#') === 0;
-        const isJs = href && href.indexOf('javascript:') === 0;
-        const isDownload = $(this).attr('download') !== undefined;
-        const isModifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.which === 2;
-        const isExternal = this.hostname && this.hostname !== window.location.hostname;
-
-        if (isHash || isJs || isDownload || isModifiedClick || this.target || isExternal) {
-            return;
-        }
-
-        event.preventDefault();
-        body.addClass('page-loading');
-        window.setTimeout(function () {
-            window.location.href = href;
-        }, 180);
-    });
-
     if (searchToggle.length && searchForm.length) {
         searchToggle.on('click', function () {
             const expanded = $(this).attr('aria-expanded') === 'true';
@@ -63,7 +44,7 @@ $(function () {
 
         if (footer.length) {
             const footerTop = footer.position().top;
-            maskHeight = Math.max(footerTop - navBottom, 0);
+            maskHeight = Math.max(footerTop - navBottom + footer.outerHeight(true), 0);
         } else {
             const container = $('.container');
             maskHeight = Math.max(container.innerHeight() - navBottom, 0);
@@ -74,6 +55,26 @@ $(function () {
             height: maskHeight + 'px'
         });
     };
+
+    $('a[href]').on('click', function (event) {
+        const href = $(this).attr('href');
+        const isHash = !href || href.indexOf('#') === 0;
+        const isJs = href && href.indexOf('javascript:') === 0;
+        const isDownload = $(this).attr('download') !== undefined;
+        const isModifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.which === 2;
+        const isExternal = this.hostname && this.hostname !== window.location.hostname;
+
+        if (isHash || isJs || isDownload || isModifiedClick || this.target || isExternal) {
+            return;
+        }
+
+        event.preventDefault();
+        syncLoadingMask();
+        body.addClass('page-loading');
+        window.setTimeout(function () {
+            window.location.href = href;
+        }, 180);
+    });
 
     const animatePageEnter = function () {
         const targets = $('.header-nav').nextAll(':not(script):not(style):not(.content-loading-mask)');
@@ -219,6 +220,7 @@ $(function () {
     setupLazyImages();
     setupPostImageEnhance();
     $(window).on('resize', syncLoadingMask);
+    $(document).on('visibilitychange', syncLoadingMask);
 
     if (!button.length) {
         return;
