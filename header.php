@@ -19,7 +19,7 @@
     <?php $this->header(); ?>
 </head>
 <body>
-<div class="page-progress" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="page-progress" aria-hidden="true"><img src="https://blog.misstwo.top/loading.gif" alt=""/></div>
 <div class="main">
     <div class="container">
         <header class="header">

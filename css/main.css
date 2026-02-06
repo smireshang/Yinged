@@ -162,14 +162,8 @@ ul {
 
 .page-progress {
     position: fixed;
-    top: 0;
+    top: 10px;
     left: 50%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 6px;
-    width: 60px;
-    height: 18px;
     transform: translateX(-50%);
     z-index: 9999;
     pointer-events: none;
@@ -177,56 +171,14 @@ ul {
     transition: opacity .18s ease;
 }
 
-.page-progress span {
+.page-progress img {
+    width: 56px;
+    height: 56px;
     display: block;
-    width: 2px;
-    height: 100%;
-    border-radius: 2px;
-    transform-origin: center top;
-    transform: scaleY(0.25);
-}
-
-.page-progress span:nth-child(1),
-.page-progress span:nth-child(3) {
-    background: #9ec5ff;
-}
-
-.page-progress span:nth-child(2) {
-    background: #2f80ed;
 }
 
 body.page-loading .page-progress {
     opacity: 1;
-}
-
-body.page-loading .page-progress span:nth-child(1) {
-    animation: barPulseA .72s ease-in-out infinite;
-}
-
-body.page-loading .page-progress span:nth-child(2) {
-    animation: barPulseB .72s ease-in-out infinite;
-}
-
-body.page-loading .page-progress span:nth-child(3) {
-    animation: barPulseC .72s ease-in-out infinite;
-}
-
-@keyframes barPulseA {
-    0%, 100% { transform: scaleY(0.3); }
-    35% { transform: scaleY(1); }
-    70% { transform: scaleY(0.45); }
-}
-
-@keyframes barPulseB {
-    0%, 100% { transform: scaleY(0.45); }
-    35% { transform: scaleY(1.15); }
-    70% { transform: scaleY(0.35); }
-}
-
-@keyframes barPulseC {
-    0%, 100% { transform: scaleY(0.35); }
-    35% { transform: scaleY(0.75); }
-    70% { transform: scaleY(1.05); }
 }
 
 .header {
@@ -366,6 +318,57 @@ body.page-loading .page-progress span:nth-child(3) {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.lazy-image {
+    background: #f5f5f5;
+    transition: opacity .2s ease;
+}
+
+.post-content img.post-lightbox-image {
+    cursor: zoom-in;
+}
+
+.image-title {
+    margin-top: 8px;
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 12px;
+    color: #7a7a7a;
+}
+
+.image-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.image-lightbox img {
+    max-width: min(92vw, 1200px);
+    max-height: 88vh;
+    border-radius: 6px;
+    box-shadow: none;
+}
+
+.image-lightbox-close {
+    position: absolute;
+    right: 20px;
+    top: 14px;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 32px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+body.lightbox-open {
+    overflow: hidden;
 }
 
 .section .section-header {
