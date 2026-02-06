@@ -12,7 +12,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('header.php');
 
 $topCids = yingedGetTopCids($this->options->topCids);
-$isFirstPage = isset($this->_currentPage) ? ((int) $this->_currentPage === 1) : true;
+$currentPage = (int) ($this->request->page ? $this->request->page : 1);
+$isFirstPage = $currentPage === 1;
 $showTopPosts = $isFirstPage && !empty($topCids);
 ?>
 
