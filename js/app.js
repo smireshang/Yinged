@@ -4,7 +4,7 @@ $(function () {
     const searchToggle = $('#header-search-toggle');
     const searchForm = $('#header-search-form');
     const searchInput = $('#header-search-input');
-    const lazyPlaceholder = 'https://pic1.imgdb.cn/item/69854565312b01a291a840cd.gif';
+    const lazyPlaceholder = 'https://blog.misstwo.top/lazyload.gif';
     const loadingMask = $('.content-loading-mask');
 
     $('a[href]').on('click', function (event) {
@@ -92,28 +92,57 @@ $(function () {
             return;
         }
 
-        images.each(function () {
-            const image = $(this);
-            const src = image.attr('src');
-
-            if (!src || src === lazyPlaceholder) {
+        const loadRealImage = function (image) {
+            const source = image.attr('data-src');
+            if (!source) {
                 return;
             }
 
-            image.attr('data-src', src);
+            const preload = new Image();
+            preload.onload = function () {
+                image.attr('src', source);
+                image.removeAttr('data-src');
+                image.removeClass('is-loading').addClass('is-loaded');
+            };
+            preload.onerror = function () {
+                image.removeClass('is-loading');
+            };
+            preload.src = source;
+        };
+
+        images.each(function () {
+            const image = $(this);
+            const source = image.attr('src');
+
+            if (!source || source === lazyPlaceholder || image.attr('data-src')) {
+                return;
+            }
+
+            image.attr('data-src', source);
             image.attr('src', lazyPlaceholder);
             image.attr('loading', 'lazy');
-            image.addClass('lazy-image');
+            image.attr('decoding', 'async');
+            image.attr('fetchpriority', 'low');
+            image.addClass('lazy-image is-loading');
         });
 
         if (!('IntersectionObserver' in window)) {
-            images.each(function () {
-                const image = $(this);
-                const source = image.attr('data-src');
-                if (source) {
-                    image.attr('src', source).removeAttr('data-src').addClass('is-loaded');
-                }
-            });
+            const revealByScroll = function () {
+                images.each(function () {
+                    const image = $(this);
+                    if (!image.attr('data-src')) {
+                        return;
+                    }
+
+                    const rect = this.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight + 200 && rect.bottom >= -200) {
+                        loadRealImage(image);
+                    }
+                });
+            };
+
+            revealByScroll();
+            $(window).on('scroll resize', revealByScroll);
             return;
         }
 
@@ -123,23 +152,15 @@ $(function () {
                     return;
                 }
 
-                const image = $(entry.target);
-                const source = image.attr('data-src');
-
-                if (source) {
-                    image.attr('src', source);
-                    image.removeAttr('data-src');
-                    image.on('load', function () {
-                        image.addClass('is-loaded');
-                    });
-                }
-
+                loadRealImage($(entry.target));
                 obs.unobserve(entry.target);
             });
-        }, { rootMargin: '80px 0px' });
+        }, { rootMargin: '200px 0px' });
 
         images.each(function () {
-            observer.observe(this);
+            if ($(this).attr('data-src')) {
+                observer.observe(this);
+            }
         });
     };
 
