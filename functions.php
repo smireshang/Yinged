@@ -12,6 +12,15 @@ function themeConfig($form)
     $footerbeian = new Typecho_Widget_Helper_Form_Element_Text('footerbeian', NULL, NULL, _t('备案号'), _t('如果你的网站备案，请在这里填写备案号，否则请空着它。'));
     $form->addInput($footerbeian);
 
+    $navCategoryMids = new Typecho_Widget_Helper_Form_Element_Text(
+        'navCategoryMids',
+        NULL,
+        '',
+        _t('导航菜单显示分类'),
+        _t('填写需要显示在导航“首页”后的分类 mid，多个请用英文逗号分隔；留空则不显示分类。')
+    );
+    $form->addInput($navCategoryMids);
+
     $topCids = new Typecho_Widget_Helper_Form_Element_Text(
         'topCids',
         NULL,
@@ -20,6 +29,15 @@ function themeConfig($form)
         _t('填写首页需要置顶的文章 CID，多个请用英文逗号分隔，例如：1,2,3')
     );
     $form->addInput($topCids);
+
+    $footerCustomHtml = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'footerCustomHtml',
+        NULL,
+        '',
+        _t('自定义页脚'),
+        _t('填写自定义页脚内容，支持 HTML。留空则不显示。')
+    );
+    $form->addInput($footerCustomHtml);
 }
 
 function themeFields($layout)
@@ -67,4 +85,22 @@ function yingedGetTopCids($value)
     }
 
     return array_values(array_unique($cids));
+}
+
+function yingedGetCategoryMids($value)
+{
+    if (empty($value)) {
+        return array();
+    }
+
+    $parts = preg_split('/\s*,\s*/', trim((string) $value));
+    $mids = array();
+    foreach ($parts as $part) {
+        $mid = (int) $part;
+        if ($mid > 0) {
+            $mids[] = $mid;
+        }
+    }
+
+    return array_values(array_unique($mids));
 }
