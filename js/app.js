@@ -90,7 +90,7 @@ $(function () {
     };
 
     const setupLazyImages = function () {
-        const images = $('.post-content img');
+        const images = $('.post-content img, .header img');
 
         if (!images.length) {
             return;

@@ -44,6 +44,10 @@ img {
     
 }
 
+body.page-loading img {
+    box-shadow: none;
+}
+
 .icon {
     width: 1.8em;
     height: 1.8em;
