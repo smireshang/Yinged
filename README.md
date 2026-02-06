@@ -1,6 +1,6 @@
 # Yinged
 
-Yinged (二改自![Ying](https://github.com/Siooooooooo/Ying))是一个 **Typecho 简约风主题**，主打轻量、清爽、阅读优先。
+Yinged (二改自[Ying](https://github.com/Siooooooooo/Ying))是一个 **Typecho 简约风主题**，主打轻量、清爽、阅读优先。
 
 ## 主题概览
 
