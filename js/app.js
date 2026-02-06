@@ -53,12 +53,26 @@ $(function () {
         }
 
         const nav = $('.header-nav');
+        const footer = $('.footer').first();
         if (!nav.length) {
             return;
         }
 
         const navBottom = nav.position().top + nav.outerHeight(true);
-        loadingMask.css('top', navBottom + 'px');
+        let maskHeight = 0;
+
+        if (footer.length) {
+            const footerTop = footer.position().top;
+            maskHeight = Math.max(footerTop - navBottom, 0);
+        } else {
+            const container = $('.container');
+            maskHeight = Math.max(container.innerHeight() - navBottom, 0);
+        }
+
+        loadingMask.css({
+            top: navBottom + 'px',
+            height: maskHeight + 'px'
+        });
     };
 
     const animatePageEnter = function () {
