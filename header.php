@@ -19,7 +19,7 @@
     <?php $this->header(); ?>
 </head>
 <body>
-<div class="page-progress" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="page-progress" aria-hidden="true"><img src="https://blog.misstwo.top/loading.gif" alt=""/></div>
 <div class="main">
     <div class="container">
         <header class="header">
@@ -30,8 +30,19 @@
             </div>
         </header>
         <nav class="nav header-nav">
-            <ul class="flat">
-                <li class="active"><a href="<?php $this->options->siteUrl(); ?>">首页</a></li>
-                <?php $this->widget('Widget_Contents_Page_List')->parse('<li class="active"><a href="{permalink}">{title}</a></li> '); ?>
-            </ul>
+            <div class="header-nav-inner">
+                <ul class="flat">
+                    <li class="active"><a href="<?php $this->options->siteUrl(); ?>">首页</a></li>
+                    <?php $this->widget('Widget_Contents_Page_List')->parse('<li class="active"><a href="{permalink}">{title}</a></li> '); ?>
+                </ul>
+                <div class="header-search">
+                    <button type="button" class="header-search-toggle" id="header-search-toggle" aria-expanded="false" aria-controls="header-search-form" aria-label="搜索">
+                        <i class="ri-search-line" aria-hidden="true"></i>
+                    </button>
+                    <form method="get" action="<?php $this->options->siteUrl(); ?>" id="header-search-form" class="header-search-form" role="search">
+                        <label for="header-search-input" class="visually-hidden">搜索</label>
+                        <input id="header-search-input" type="search" name="s" placeholder="搜索文章" autocomplete="off" required>
+                    </form>
+                </div>
+            </div>
         </nav>
