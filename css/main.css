@@ -160,7 +160,6 @@ ul {
     border-radius: 8px;
 }
 
-
 .container {
     position: relative;
 }
@@ -222,7 +221,6 @@ ul {
     text-decoration: none;
 }
 
-
 .content-loading-mask {
     position: absolute;
     left: 0;
@@ -261,7 +259,6 @@ ul {
 body.page-loading .content-loading-mask {
     opacity: 1;
 }
-
 
 .visually-hidden {
     position: absolute;
@@ -344,12 +341,10 @@ body.page-loading .content-loading-mask {
     }
 }
 
-
 .lazy-image {
     background: #f5f5f5;
     transition: opacity .2s ease;
 }
-
 
 .post-content {
     letter-spacing: 0.11em;
