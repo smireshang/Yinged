@@ -183,7 +183,6 @@ $(function () {
     animatePageEnter();
     setupLazyImages();
     setupPostImageEnhance();
-
     $(window).on('resize', syncLoadingMask);
 
     if (!button.length) {

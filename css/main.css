@@ -160,7 +160,6 @@ ul {
     border-radius: 8px;
 }
 
-
 .container {
     position: relative;
 }
@@ -222,7 +221,6 @@ ul {
     text-decoration: none;
 }
 
-
 .content-loading-mask {
     position: absolute;
     left: 0;
@@ -252,7 +250,6 @@ ul {
 body.page-loading .content-loading-mask {
     opacity: 1;
 }
-
 
 .visually-hidden {
     position: absolute;
@@ -334,7 +331,6 @@ body.page-loading .content-loading-mask {
         transform: translateY(0);
     }
 }
-
 
 .lazy-image {
     background: #f5f5f5;
@@ -528,6 +524,10 @@ body.lightbox-open {
         margin-top: 10px;
         position: relative;
 }
+
+    .header-search-form input {
+        width: 150px;
+    }
 
     .header-search-form input {
         width: 150px;
