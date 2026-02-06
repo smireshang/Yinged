@@ -22,6 +22,7 @@ function themeConfig($form)
     $form->addInput($topCids);
 }
 
+
 function themeFields($layout)
 {
     $sourceType = new Typecho_Widget_Helper_Form_Element_Radio(
