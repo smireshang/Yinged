@@ -160,26 +160,8 @@ ul {
     border-radius: 8px;
 }
 
-.page-progress {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity .18s ease;
-}
-
-.page-progress img {
-    width: 48px;
-    height: 48px;
-    max-width: 60px;
-    display: block;
-}
-
-body.page-loading .page-progress {
-    opacity: 1;
+.container {
+    position: relative;
 }
 
 .header {
@@ -239,6 +221,35 @@ body.page-loading .page-progress {
     text-decoration: none;
 }
 
+.content-loading-mask {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: opacity .18s ease;
+    z-index: 30;
+}
+
+.content-loading-mask img {
+    width: 52px;
+    height: 52px;
+    max-width: 60px;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+body.page-loading .content-loading-mask {
+    opacity: 1;
+}
 
 .visually-hidden {
     position: absolute;
@@ -511,6 +522,11 @@ body.lightbox-open {
 
     .container {
         margin-top: 10px;
+        position: relative;
+}
+
+    .header-search-form input {
+        width: 150px;
     }
 
     .header-search-form input {

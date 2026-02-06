@@ -30,7 +30,9 @@ $this->need('header.php'); ?>
                                 ->order('table.contents.created', Typecho_Db::SORT_DESC), array($this, 'push'));
                             //var_dump($contents);
                             foreach ($contents as $content) {
-                                echo "<p><span class='archives-time'>$content[month]-$content[day]</span> <a href='$content[permalink]' title='$content[title]'>$content[title]</a></p>";
+                                $this->widget('Widget_Archive@post-' . $content['cid'], 'pageSize=1&type=post', 'cid=' . $content['cid'])->to($postItem);
+                                $title = htmlspecialchars($postItem->title, ENT_QUOTES, 'UTF-8');
+                                echo "<p><span class='archives-time'>{$content['month']}-{$content['day']}</span> <a href='{$postItem->permalink}' title='{$title}'>{$title}</a></p>";
                             }
                             ?>
     
@@ -41,6 +43,3 @@ $this->need('header.php'); ?>
         </div>
     </div>
 <?php $this->need('footer.php'); ?>
-</div>
-</body>
-</html>

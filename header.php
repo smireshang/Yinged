@@ -19,7 +19,6 @@
     <?php $this->header(); ?>
 </head>
 <body>
-<div class="page-progress" aria-hidden="true"><img src="https://blog.misstwo.top/loading.gif" alt=""/></div>
 <div class="main">
     <div class="container">
         <header class="header">
@@ -46,3 +45,6 @@
                 </div>
             </div>
         </nav>
+        <div class="content-loading-mask" aria-hidden="true">
+            <img src="https://blog.misstwo.top/loading.gif" alt="">
+        </div>

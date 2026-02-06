@@ -5,6 +5,7 @@ $(function () {
     const searchForm = $('#header-search-form');
     const searchInput = $('#header-search-input');
     const lazyPlaceholder = 'https://pic1.imgdb.cn/item/69854565312b01a291a840cd.gif';
+    const loadingMask = $('.content-loading-mask');
 
     $('a[href]').on('click', function (event) {
         const href = $(this).attr('href');
@@ -46,8 +47,22 @@ $(function () {
         });
     }
 
+    const syncLoadingMask = function () {
+        if (!loadingMask.length) {
+            return;
+        }
+
+        const nav = $('.header-nav');
+        if (!nav.length) {
+            return;
+        }
+
+        const navBottom = nav.position().top + nav.outerHeight(true);
+        loadingMask.css('top', navBottom + 'px');
+    };
+
     const animatePageEnter = function () {
-        const targets = $('.header-nav').nextAll(':not(script):not(style)');
+        const targets = $('.header-nav').nextAll(':not(script):not(style):not(.content-loading-mask)');
 
         targets.each(function (index) {
             $(this)
@@ -164,9 +179,11 @@ $(function () {
         });
     };
 
+    syncLoadingMask();
     animatePageEnter();
     setupLazyImages();
     setupPostImageEnhance();
+    $(window).on('resize', syncLoadingMask);
 
     if (!button.length) {
         return;
