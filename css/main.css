@@ -286,6 +286,88 @@ body.page-loading .page-progress span:nth-child(3) {
     text-decoration: none;
 }
 
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.header-nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.header-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.header-search-toggle {
+    border: 0;
+    background: transparent;
+    padding: 2px;
+    color: #586069;
+    cursor: pointer;
+    line-height: 1;
+    font-size: 18px;
+}
+
+.header-search-toggle:hover {
+    color: #24292e;
+}
+
+.header-search-form {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity .2s ease, transform .2s ease;
+}
+
+.header-search-form.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.header-search-form input {
+    width: 190px;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    padding: 7px 9px;
+    font-size: 13px;
+    outline: none;
+}
+
+.header-search-form input:focus {
+    border-color: #8fb7ee;
+}
+
+.page-enter-item {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: pageEnter .34s ease forwards;
+}
+
+@keyframes pageEnter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .section .section-header {
     font-size: 0.88rem;
     font-weight: 600;
@@ -425,6 +507,10 @@ body.page-loading .page-progress span:nth-child(3) {
 
     .container {
         margin-top: 10px;
+    }
+
+    .header-search-form input {
+        width: 150px;
     }
 
     .highlight pre::-webkit-scrollbar {
@@ -581,87 +667,6 @@ darkb-text:active {
     height: 100%;
     border: 0;
 }
-.comment-section {
-    margin-top: 28px;
-    padding-top: 20px;
-    border-top: 1px solid #f4f4f4;
-}
-
-.comment-title {
-    margin: 0 0 14px;
-    font-size: 1.2rem;
-}
-
-.comment-form-top {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 12px;
-}
-
-.comment-field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    flex: 1;
-}
-
-.comment-field label {
-    font-size: 13px;
-    color: #666;
-}
-
-.comment-field .required {
-    color: #e74c3c;
-    margin-left: 2px;
-}
-
-.comment-field input,
-.comment-field textarea {
-    width: 100%;
-    border: 1px solid #e1e4e8;
-    border-radius: 4px;
-    padding: 10px;
-    font-size: 14px;
-    outline: none;
-    transition: border-color .2s ease;
-    box-sizing: border-box;
-}
-
-.comment-field input:focus,
-.comment-field textarea:focus {
-    border-color: #8fb7ee;
-}
-
-.comment-form-bottom {
-    margin-bottom: 12px;
-}
-
-.comment-field textarea {
-    min-height: 130px;
-    resize: vertical;
-}
-
-.comment-submit {
-    border: 1px solid #24292e;
-    background: #24292e;
-    color: #fff;
-    border-radius: 4px;
-    padding: 8px 14px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.comment-submit:hover {
-    background: #3b4045;
-    border-color: #3b4045;
-}
-
-@media (max-width: 767px) {
-    .comment-form-top {
-        flex-direction: column;
-    }
-}
-
 .footer .nav {
     text-align: center;
 }
@@ -682,25 +687,3 @@ darkb-text:active {
     border-radius: 0;
 }
 
-.comment-list {
-    margin: 0 0 16px;
-    padding: 0;
-}
-
-.comment-item {
-    list-style: none;
-    border-bottom: 1px solid #f1f1f1;
-    padding: 10px 0;
-}
-
-.comment-meta {
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 6px;
-}
-
-.comment-author {
-    font-weight: 600;
-    color: #444;
-    margin-right: 10px;
-}
