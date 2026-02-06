@@ -4,27 +4,8 @@ $(function () {
     const searchToggle = $('#header-search-toggle');
     const searchForm = $('#header-search-form');
     const searchInput = $('#header-search-input');
-    const lazyPlaceholder = 'https://pic1.imgdb.cn/item/69854565312b01a291a840cd.gif';
+    const lazyPlaceholder = 'https://blog.misstwo.top/lazyload.gif';
     const loadingMask = $('.content-loading-mask');
-
-    $('a[href]').on('click', function (event) {
-        const href = $(this).attr('href');
-        const isHash = !href || href.indexOf('#') === 0;
-        const isJs = href && href.indexOf('javascript:') === 0;
-        const isDownload = $(this).attr('download') !== undefined;
-        const isModifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.which === 2;
-        const isExternal = this.hostname && this.hostname !== window.location.hostname;
-
-        if (isHash || isJs || isDownload || isModifiedClick || this.target || isExternal) {
-            return;
-        }
-
-        event.preventDefault();
-        body.addClass('page-loading');
-        window.setTimeout(function () {
-            window.location.href = href;
-        }, 180);
-    });
 
     if (searchToggle.length && searchForm.length) {
         searchToggle.on('click', function () {
@@ -59,21 +40,44 @@ $(function () {
         }
 
         const navBottom = nav.position().top + nav.outerHeight(true);
+        const container = $('.container');
+        const extraHeight = 200;
         let maskHeight = 0;
 
         if (footer.length) {
             const footerTop = footer.position().top;
-            maskHeight = Math.max(footerTop - navBottom, 0);
-        } else {
-            const container = $('.container');
-            maskHeight = Math.max(container.innerHeight() - navBottom, 0);
+            maskHeight = Math.max(footerTop - navBottom + footer.outerHeight(true), 0);
+        } else if (container.length) {
+            maskHeight = Math.max(container.outerHeight(true) - navBottom, 0);
         }
+
+        maskHeight += extraHeight;
 
         loadingMask.css({
             top: navBottom + 'px',
             height: maskHeight + 'px'
         });
     };
+
+    $('a[href]').on('click', function (event) {
+        const href = $(this).attr('href');
+        const isHash = !href || href.indexOf('#') === 0;
+        const isJs = href && href.indexOf('javascript:') === 0;
+        const isDownload = $(this).attr('download') !== undefined;
+        const isModifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.which === 2;
+        const isExternal = this.hostname && this.hostname !== window.location.hostname;
+
+        if (isHash || isJs || isDownload || isModifiedClick || this.target || isExternal) {
+            return;
+        }
+
+        event.preventDefault();
+        syncLoadingMask();
+        body.addClass('page-loading');
+        window.setTimeout(function () {
+            window.location.href = href;
+        }, 180);
+    });
 
     const animatePageEnter = function () {
         const targets = $('.header-nav').nextAll(':not(script):not(style):not(.content-loading-mask)');
@@ -86,34 +90,63 @@ $(function () {
     };
 
     const setupLazyImages = function () {
-        const images = $('.post-content img');
+        const images = $('.post-content img, .header img');
 
         if (!images.length) {
             return;
         }
 
-        images.each(function () {
-            const image = $(this);
-            const src = image.attr('src');
-
-            if (!src || src === lazyPlaceholder) {
+        const loadRealImage = function (image) {
+            const source = image.attr('data-src');
+            if (!source) {
                 return;
             }
 
-            image.attr('data-src', src);
+            const preload = new Image();
+            preload.onload = function () {
+                image.attr('src', source);
+                image.removeAttr('data-src');
+                image.removeClass('is-loading').addClass('is-loaded');
+            };
+            preload.onerror = function () {
+                image.removeClass('is-loading');
+            };
+            preload.src = source;
+        };
+
+        images.each(function () {
+            const image = $(this);
+            const source = image.attr('src');
+
+            if (!source || source === lazyPlaceholder || image.attr('data-src')) {
+                return;
+            }
+
+            image.attr('data-src', source);
             image.attr('src', lazyPlaceholder);
             image.attr('loading', 'lazy');
-            image.addClass('lazy-image');
+            image.attr('decoding', 'async');
+            image.attr('fetchpriority', 'low');
+            image.addClass('lazy-image is-loading');
         });
 
         if (!('IntersectionObserver' in window)) {
-            images.each(function () {
-                const image = $(this);
-                const source = image.attr('data-src');
-                if (source) {
-                    image.attr('src', source).removeAttr('data-src').addClass('is-loaded');
-                }
-            });
+            const revealByScroll = function () {
+                images.each(function () {
+                    const image = $(this);
+                    if (!image.attr('data-src')) {
+                        return;
+                    }
+
+                    const rect = this.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight + 200 && rect.bottom >= -200) {
+                        loadRealImage(image);
+                    }
+                });
+            };
+
+            revealByScroll();
+            $(window).on('scroll resize', revealByScroll);
             return;
         }
 
@@ -123,23 +156,15 @@ $(function () {
                     return;
                 }
 
-                const image = $(entry.target);
-                const source = image.attr('data-src');
-
-                if (source) {
-                    image.attr('src', source);
-                    image.removeAttr('data-src');
-                    image.on('load', function () {
-                        image.addClass('is-loaded');
-                    });
-                }
-
+                loadRealImage($(entry.target));
                 obs.unobserve(entry.target);
             });
-        }, { rootMargin: '80px 0px' });
+        }, { rootMargin: '200px 0px' });
 
         images.each(function () {
-            observer.observe(this);
+            if ($(this).attr('data-src')) {
+                observer.observe(this);
+            }
         });
     };
 
@@ -198,6 +223,7 @@ $(function () {
     setupLazyImages();
     setupPostImageEnhance();
     $(window).on('resize', syncLoadingMask);
+    $(document).on('visibilitychange', syncLoadingMask);
 
     if (!button.length) {
         return;

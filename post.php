@@ -19,6 +19,19 @@
             </ul>
         </nav>
     </div>
+    <?php
+    $sourceType = isset($this->fields->sourceType) ? $this->fields->sourceType : 'original';
+    $sourceUrl = isset($this->fields->sourceUrl) ? trim((string) $this->fields->sourceUrl) : '';
+    ?>
+    <div class="post-source-note">
+        <?php if ($sourceType === 'reprint' && $sourceUrl): ?>
+            文章来源：转载，原文地址为 <a href="<?php echo $sourceUrl; ?>" rel="noopener noreferrer" target="_blank"><?php echo $sourceUrl; ?></a>
+        <?php elseif ($sourceType === 'reprint'): ?>
+            文章来源：转载，转载请注明来源
+        <?php else: ?>
+            文章来源：原创，转载请注明来源
+        <?php endif; ?>
+    </div>
     </div>
 
 </div><!-- end #main-->
