@@ -32,6 +32,18 @@
             <div class="header-nav-inner">
                 <ul class="flat">
                     <li class="active"><a href="<?php $this->options->siteUrl(); ?>">首页</a></li>
+                    <?php
+                    $navCategoryMids = yingedGetCategoryMids($this->options->navCategoryMids);
+                    if (!empty($navCategoryMids)) :
+                        $categoryList = $this->widget('Widget_Metas_Category_List');
+                        while ($categoryList->next()) :
+                            if (!in_array($categoryList->mid, $navCategoryMids, true)) {
+                                continue;
+                            }
+                            ?>
+                            <li class="active"><a href="<?php $categoryList->permalink(); ?>"><?php $categoryList->name(); ?></a></li>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
                     <?php $this->widget('Widget_Contents_Page_List')->parse('<li class="active"><a href="{permalink}">{title}</a></li> '); ?>
                 </ul>
                 <div class="header-search">
