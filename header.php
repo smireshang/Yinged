@@ -36,13 +36,22 @@
                     $navCategoryMids = yingedGetCategoryMids($this->options->navCategoryMids);
                     if (!empty($navCategoryMids)) :
                         $categoryList = $this->widget('Widget_Metas_Category_List');
+                        $categoryMap = array();
                         while ($categoryList->next()) :
-                            if (!in_array($categoryList->mid, $navCategoryMids, true)) {
+                            $categoryMap[(int) $categoryList->mid] = array(
+                                'permalink' => $categoryList->permalink,
+                                'name' => $categoryList->name,
+                            );
+                        endwhile;
+                        foreach ($navCategoryMids as $mid) :
+                            if (!isset($categoryMap[$mid])) {
                                 continue;
                             }
+                            $category = $categoryMap[$mid];
                             ?>
-                            <li class="active"><a href="<?php $categoryList->permalink(); ?>"><?php $categoryList->name(); ?></a></li>
-                        <?php endwhile; ?>
+                            <li class="active"><a href="<?php echo $category['permalink']; ?>"><?php echo $category['name']; ?></a></li>
+                        <?php endforeach; ?>
+
                     <?php endif; ?>
                     <?php $this->widget('Widget_Contents_Page_List')->parse('<li class="active"><a href="{permalink}">{title}</a></li> '); ?>
                 </ul>
