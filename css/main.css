@@ -234,11 +234,13 @@ ul {
     padding-top: 80px;
     background: linear-gradient(
         90deg,
-        rgba(255, 255, 255, 0.22) 0%,
-        rgba(255, 255, 255, 0.55) 22%,
-        rgba(255, 255, 255, 0.72) 50%,
-        rgba(255, 255, 255, 0.55) 78%,
-        rgba(255, 255, 255, 0.22) 100%
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0) 10px,
+        rgba(255, 255, 255, 0.45) 24%,
+        rgba(255, 255, 255, 0.78) 50%,
+        rgba(255, 255, 255, 0.45) 76%,
+        rgba(255, 255, 255, 0) calc(100% - 10px),
+        rgba(255, 255, 255, 0) 100%
     );
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -346,6 +348,14 @@ body.page-loading .content-loading-mask {
     transition: opacity .2s ease;
 }
 
+.lazy-image.is-loading {
+    opacity: .72;
+}
+
+.lazy-image.is-loaded {
+    opacity: 1;
+}
+
 .post-content {
     letter-spacing: 0.11em;
 }
@@ -381,6 +391,7 @@ body.page-loading .content-loading-mask {
     position: relative;
     margin: 1.2em 0 .6em;
     padding-left: 12px;
+    font-size: 18px;
 }
 
 .post-content h3::before {
@@ -456,6 +467,12 @@ body.lightbox-open {
 
 .recent-posts .posts .post > a {
     font-weight: 700;
+}
+
+.top-flag {
+    color: #d93025;
+    font-weight: 700;
+    margin-right: 4px;
 }
 
 .recent-posts .posts .post .time,
