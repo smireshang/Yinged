@@ -374,6 +374,16 @@ body.page-loading .content-loading-mask {
     display: inline-block;
     margin: 1.5em 0 .75em;
     padding-bottom: 8px;
+    padding-left: 16px;
+}
+
+.post-content h2::before {
+    content: '#';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #d93025;
+    font-weight: 600;
 }
 
 .post-content h2::after {
@@ -383,16 +393,6 @@ body.page-loading .content-loading-mask {
     right: 0;
     bottom: 0;
     height: 2px;
-    background: #2f80ed;
-}
-
-.post-content h2::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 2.2em;
-    height: 3px;
     background: #2f80ed;
 }
 
@@ -641,6 +641,11 @@ body.lightbox-open {
     .highlight pre::-webkit-scrollbar {
         display: none;
     }
+
+    .post-source-note {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
 }
 
 /*回到顶部*/
@@ -770,6 +775,10 @@ darkb-text:active {
 
 .pagination .page-item.page-next {
     text-align: right;
+}
+
+.pagination .page-item {
+    font-size: 14px;
 }
 
 /* 视频尺寸 */
