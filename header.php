@@ -22,7 +22,9 @@
 <div class="main">
     <div class="container">
         <header class="header">
-            <img src="<?php $this->options->logoUrl(); ?>" width="80" height="80" alt="<?php $this->options->title(); ?>"/>
+            <a href="<?php $this->options->siteUrl('admin'); ?>" class="site-logo-link">
+                <img src="<?php $this->options->logoUrl(); ?>" width="80" height="80" alt="<?php $this->options->title(); ?>"/>
+            </a>
             <div class="site-info">
                 <h1><?php $this->options->title(); ?></h1>
                 <p class="site-description"><?php $this->options->yiyan(); ?></p>
