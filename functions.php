@@ -50,7 +50,7 @@ function themeFields($layout)
         ),
         'original',
         _t('文章来源类型'),
-        _t('设置文章来源类型，前端将显示对应提示')
+        _t('<span style="display:block;margin-top:6px;">设置文章来源类型，前端将显示对应提示</span>')
     );
 
     $sourceType->setAttribute('style', 'margin-bottom: 8px;');
@@ -61,7 +61,7 @@ function themeFields($layout)
         NULL,
         '',
         _t('转载原文地址'),
-        _t('当文章来源为转载时填写原文链接')
+        _t('<span style="display:block;margin-top:6px;">当文章来源为转载时填写原文链接</span>')
     );
 
     $sourceUrl->setAttribute('style', 'margin-bottom: 8px;');

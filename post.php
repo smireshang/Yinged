@@ -13,6 +13,7 @@
         <div class="post-content" itemprop="articleBody">
             <?php $this->content(); ?>
             <div class="post-tags">
+                <div class="post-end">完</div>
         <nav class="nav tags">
             <ul class="flat">
                 <?php _e(''); ?><?php $this->tags(' ', true, ''); ?>

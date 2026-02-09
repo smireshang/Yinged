@@ -155,6 +155,7 @@ ul {
 
 /*默认 box-shadow 数值：rgba(236, 236, 236, 0.86)*/
 .main {
+    position: relative;
     max-width: 660px;
     overflow: hidden;
     margin: 60px auto;
@@ -376,6 +377,15 @@ body.page-loading .content-loading-mask {
     padding-bottom: 8px;
 }
 
+.post-content h2::before {
+    content: '#';
+    position: absolute;
+    left: -16px;
+    top: 0;
+    color: #d93025;
+    font-weight: 600;
+}
+
 .post-content h2::after {
     content: '';
     position: absolute;
@@ -386,27 +396,16 @@ body.page-loading .content-loading-mask {
     background: #2f80ed;
 }
 
-.post-content h2::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 2.2em;
-    height: 3px;
-    background: #2f80ed;
-}
-
 .post-content h3 {
     position: relative;
     margin: 1.2em 0 .6em;
-    padding-left: 12px;
     font-size: 18px;
 }
 
 .post-content h3::before {
     content: '';
     position: absolute;
-    left: 0;
+    left: -12px;
     top: 50%;
     width: 5px;
     height: 16px;
@@ -518,6 +517,19 @@ body.lightbox-open {
     margin-top: 40px;
 }
 
+.post-end {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background: #f1f1f1;
+    color: #8a8a8a;
+    font-size: 15px;
+    margin: 0 auto 12px;
+}
+
 .post-source-note {
     margin-top: 16px;
     padding: 12px 14px;
@@ -543,6 +555,32 @@ body.lightbox-open {
     margin: 0 1px;
     border: 1px solid #41464b;
     background-color: #41464b;
+}
+
+.calendar-widget {
+    position: absolute;
+    top: 0;
+    right: 24px;
+    background: #f3f3f3;
+    color: #555555;
+    border-radius: 0 0 999px 999px;
+    padding: 10px 14px 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 64px;
+}
+
+.calendar-widget .calendar-month {
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.calendar-widget .calendar-day {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.1;
 }
 
 .footer {
@@ -640,6 +678,11 @@ body.lightbox-open {
 
     .highlight pre::-webkit-scrollbar {
         display: none;
+    }
+
+    .post-source-note {
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 }
 
@@ -770,6 +813,10 @@ darkb-text:active {
 
 .pagination .page-item.page-next {
     text-align: right;
+}
+
+.pagination .page-item {
+    font-size: 14px;
 }
 
 /* 视频尺寸 */

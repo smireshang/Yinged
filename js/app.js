@@ -6,6 +6,9 @@ $(function () {
     const searchInput = $('#header-search-input');
     const lazyPlaceholder = 'https://blog.misstwo.top/lazyload.gif';
     const loadingMask = $('.content-loading-mask');
+    const clearLoadingState = function () {
+        body.removeClass('page-loading');
+    };
 
     if (searchToggle.length && searchForm.length) {
         searchToggle.on('click', function () {
@@ -224,6 +227,7 @@ $(function () {
     setupPostImageEnhance();
     $(window).on('resize', syncLoadingMask);
     $(document).on('visibilitychange', syncLoadingMask);
+    $(window).on('pageshow', clearLoadingState);
 
     if (!button.length) {
         return;
