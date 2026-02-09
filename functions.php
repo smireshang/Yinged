@@ -53,7 +53,7 @@ function themeFields($layout)
         _t('设置文章来源类型，前端将显示对应提示')
     );
 
-    $sourceType->setAttribute('style', 'margin-bottom: 8px;');
+    $sourceType->setAttribute('style', 'margin-bottom: 16px;');
     $layout->addItem($sourceType);
 
     $sourceUrl = new Typecho_Widget_Helper_Form_Element_Text(
@@ -64,7 +64,7 @@ function themeFields($layout)
         _t('当文章来源为转载时填写原文链接')
     );
 
-    $sourceUrl->setAttribute('style', 'margin-bottom: 8px;');
+    $sourceUrl->setAttribute('style', 'margin-bottom: 16px;');
 
     $layout->addItem($sourceUrl);
 }

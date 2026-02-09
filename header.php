@@ -20,6 +20,12 @@
 </head>
 <body>
 <div class="main">
+    <?php if ($this->is('index')): ?>
+        <div class="home-calendar" aria-label="日历">
+            <span class="month"><?php echo date('n'); ?>月</span>
+            <span class="day"><?php echo date('j'); ?></span>
+        </div>
+    <?php endif; ?>
     <div class="container">
         <header class="header">
             <a href="<?php $this->options->siteUrl('admin'); ?>" class="site-logo-link">

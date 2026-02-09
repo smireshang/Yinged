@@ -12,6 +12,7 @@
         </div>  
         <div class="post-content" itemprop="articleBody">
             <?php $this->content(); ?>
+            <div class="post-end">完</div>
             <div class="post-tags">
         <nav class="nav tags">
             <ul class="flat">
