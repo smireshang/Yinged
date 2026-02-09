@@ -162,6 +162,7 @@ ul {
     background: #ffffff;
     box-shadow: 0 10px 20px 0 rgba(236, 236, 236, 0.86);
     border-radius: 8px;
+    position: relative;
 }
 
 .container {
@@ -374,13 +375,12 @@ body.page-loading .content-loading-mask {
     display: inline-block;
     margin: 1.5em 0 .75em;
     padding-bottom: 8px;
-    padding-left: 16px;
 }
 
 .post-content h2::before {
     content: '#';
     position: absolute;
-    left: 0;
+    left: -16px;
     top: 0;
     color: #d93025;
     font-weight: 600;
@@ -399,14 +399,13 @@ body.page-loading .content-loading-mask {
 .post-content h3 {
     position: relative;
     margin: 1.2em 0 .6em;
-    padding-left: 12px;
     font-size: 18px;
 }
 
 .post-content h3::before {
     content: '';
     position: absolute;
-    left: 0;
+    left: -12px;
     top: 50%;
     width: 5px;
     height: 16px;
@@ -514,6 +513,19 @@ body.lightbox-open {
     margin-top: 20px;
 }
 
+.post-end {
+    width: 36px;
+    height: 36px;
+    margin: 24px auto 0;
+    border-radius: 999px;
+    background: #f1f1f1;
+    color: #666666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
 .post-tags .tags {
     margin-top: 40px;
 }
@@ -557,6 +569,34 @@ body.lightbox-open {
 .highlight {
     background: #3a3a3a;
     border: 3px solid #e8e8e8;
+}
+
+.home-calendar {
+    position: absolute;
+    top: 0;
+    right: 28px;
+    width: 76px;
+    height: 54px;
+    background: #f1f1f1;
+    border-radius: 0 0 999px 999px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    color: #5f6368;
+}
+
+.home-calendar .month {
+    font-size: 12px;
+    line-height: 1;
+}
+
+.home-calendar .day {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1;
+    color: #24292e;
 }
 
 .highlight pre,
